@@ -1,5 +1,13 @@
 from random import choice
 import string
+from Hangman_Drawing import hangman_drawings
+
+def welcome_message(selected_word):
+    print("Welcome to Hangman!")
+    print("You have 6 tries to guess the word.") 
+    print("Good luck!")
+    print("_ " * len(selected_word))
+
 
 def select_word():
     with open("words.txt", mode="r") as words:
@@ -35,10 +43,9 @@ def main():
     selected_word = select_word()
     guessed_letters = set()
     tries = 6
-    print("Welcome to Hangman!")
-    print("You have 6 tries to guess the word.") 
-    print("Good luck!")
-    print("_ " * len(selected_word))
+    wrong_guesses = 0
+    hangman_drawings(wrong_guesses)
+    welcome_message(selected_word)
     while tries > 0:
         player_input = get_player_input()
         if player_input in selected_word:
@@ -46,6 +53,8 @@ def main():
             print(f"Correct! {join_guessed_letters(selected_word, guessed_letters)}")
         else:
             tries -= 1
+            wrong_guesses += 1
+            hangman_drawings(wrong_guesses)
             print(f"Incorrect! {join_guessed_letters(selected_word, guessed_letters)}")
             print(f"Tries left: {tries}")
         if guessed_letters == set(selected_word):
