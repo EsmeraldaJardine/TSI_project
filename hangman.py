@@ -43,16 +43,16 @@ def join_guessed_letters(selected_word, guessed_letters):
 
 def is_gave_over(guessed_letters, selected_word, max_wrong_guesses, wrong_guesses):
     if wrong_guesses == max_wrong_guesses:
+        print(f"Sorry! You have run out of tries. The word was: {selected_word}")
         return True
     if guessed_letters == set(selected_word):
+        print(f"Congratulations! You have guessed the word: {selected_word}")
         return True
     return False
-
-
     
 
 def game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses):
-    while is_gave_over(guessed_letters, selected_word) == False:
+    while is_gave_over(guessed_letters, selected_word, max_wrong_guesses, wrong_guesses) == False:
         player_input = get_player_input()
         if player_input in selected_word:
             guessed_letters.add(player_input)
@@ -63,12 +63,6 @@ def game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses):
             wrong_guesses += 1
             hangman_drawings(wrong_guesses)
             print(f"Incorrect! {join_guessed_letters(selected_word, guessed_letters)}")
-            print(f"Wrong guesses made: {wrong_guesses}")
-        if guessed_letters == set(selected_word):
-            print(f"Congratulations! You have guessed the word: {selected_word}")
-            break
-    else:
-        print(f"Sorry! You have run out of tries. The word was: {selected_word}")
 
 
 def main():
