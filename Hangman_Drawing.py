@@ -1,4 +1,4 @@
-def hangman_drawings():
+def hangman_drawings(incorrect_guesses):
   hangman_drawings = ['''
   +---+
   |   |
@@ -49,4 +49,4 @@ def hangman_drawings():
  / \  |
       |
 =========''']
-  return hangman_drawings
+  return print(hangman_drawings[incorrect_guesses])
