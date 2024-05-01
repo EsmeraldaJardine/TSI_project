@@ -22,8 +22,14 @@ def validate_input(player_input):
     return True
 
 
-def join_guessed_letters(guessed_letters):
-    return " ".join(sorted(guessed_letters))
+def join_guessed_letters(selected_word, guessed_letters):
+    result = []
+    for letter in selected_word:
+        if letter in guessed_letters:
+            result.append(letter)
+        else:
+            result.append('_')
+    return ' '.join(result)
 
 def main():
     selected_word = select_word()
@@ -37,10 +43,10 @@ def main():
         player_input = get_player_input()
         if player_input in selected_word:
             guessed_letters.add(player_input)
-            print(f"Correct! {join_guessed_letters(guessed_letters)}")
+            print(f"Correct! {join_guessed_letters(selected_word, guessed_letters)}")
         else:
             tries -= 1
-            print(f"Incorrect! {join_guessed_letters(guessed_letters)}")
+            print(f"Incorrect! {join_guessed_letters(selected_word, guessed_letters)}")
             print(f"Tries left: {tries}")
         if guessed_letters == set(selected_word):
             print(f"Congratulations! You have guessed the word: {selected_word}")
