@@ -41,18 +41,27 @@ def join_guessed_letters(selected_word, guessed_letters):
             result.append('_')
     return ' '.join(result)
 
-def game_loop(selected_word, guessed_letters, attempts, wrong_guesses):
-    while attempts > 0:
+def is_gave_over(guessed_letters, selected_word, max_wrong_guesses, wrong_guesses):
+    if wrong_guesses == max_wrong_guesses:
+        return True
+    if guessed_letters == set(selected_word):
+        return True
+    return False
+
+
+    
+
+def game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses):
+    while is_gave_over(guessed_letters, selected_word) == False:
         player_input = get_player_input()
         if player_input in selected_word:
             guessed_letters.add(player_input)
             print(f"Correct! {join_guessed_letters(selected_word, guessed_letters)}")
         else:
-            attempts -= 1
             wrong_guesses += 1
             hangman_drawings(wrong_guesses)
             print(f"Incorrect! {join_guessed_letters(selected_word, guessed_letters)}")
-            print(f"Tries left: {attempts}")
+            print(f"Wrong guesses made: {wrong_guesses}")
         if guessed_letters == set(selected_word):
             print(f"Congratulations! You have guessed the word: {selected_word}")
             break
@@ -63,10 +72,10 @@ def game_loop(selected_word, guessed_letters, attempts, wrong_guesses):
 def main():
     selected_word = select_word()
     guessed_letters = set()
-    attempts = MAX_ATTEMPTS
+    max_wrong_guesses = MAX_ATTEMPTS
     wrong_guesses = 0
     hangman_drawings(wrong_guesses)
     welcome_message(selected_word)
-    game_loop(selected_word, guessed_letters, attempts, wrong_guesses)
+    game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses)
 
 main()
