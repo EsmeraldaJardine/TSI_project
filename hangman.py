@@ -56,7 +56,9 @@ def game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses):
         player_input = get_player_input()
         if player_input in selected_word:
             guessed_letters.add(player_input)
+            hangman_drawings(wrong_guesses)
             print(f"Correct! {join_guessed_letters(selected_word, guessed_letters)}")
+            
         else:
             wrong_guesses += 1
             hangman_drawings(wrong_guesses)

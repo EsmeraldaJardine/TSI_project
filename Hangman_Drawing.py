@@ -1,52 +1,52 @@
-def hangman_drawings(incorrect_guesses):
+def hangman_drawings(wrong_guesses):
   hangman_drawings = ['''
   +---+
-  |   |
-      |
-      |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
+  |   |   Wrong guesses left:
+      |    »»————- 6 ————-««
       |
       |
       |
 =========''', '''
   +---+
-  |   |
-  O   |
+  |   |   Wrong guesses left:
+  O   |    »»————- 5 ————-««
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |   Wrong guesses left:
+  O   |    »»————- 4 ————-««
   |   |
       |
       |
 =========''', '''
   +---+
-  |   |
-  O   |
+  |   |   Wrong guesses left:
+  O   |    »»————- 3 ————-««
  /|   |
       |
       |
 =========''', '''
   +---+
-  |   |
-  O   |
+  |   |   Wrong guesses left:
+  O   |    »»————- 2 ————-««
  /|\  |
       |
       |
 =========''', '''
   +---+
-  |   |
-  O   |
+  |   |   Wrong guesses left:
+  O   |    »»————- 1 ————-««
  /|\  |
  /    |
       |
 =========''', '''
   +---+
-  |   |
-  O   |
- /|\  |
+  |   |   Wrong guesses left:
+  O   |    »»————- 0 ————-««
+ /|\  |      𝙶𝚊𝚖𝚎 𝙾𝚟𝚎𝚛!
  / \  |
       |
 =========''']
-  return print(hangman_drawings[incorrect_guesses])
+  return print(hangman_drawings[wrong_guesses])
