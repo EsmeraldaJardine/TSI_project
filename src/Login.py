@@ -12,12 +12,12 @@ class LogIn:
         return password
 
     def log_in(self):
-        email_address = input("Enter your email address")
+        email_address = input("Enter your email address: ")
         password = self.get_password(email_address)
         if password == "":
             print("You are not a user")
         else:
-            if input("Enter password") == password:
+            if input("Enter password: ") == password:
                 print("You are logged in")
             else:
                 print("Wrong password, no second chances")

@@ -1,6 +1,6 @@
 from random import choice
 import string
-from Hangman_Drawing import hangman_drawings
+from src.HangmanDrawing import hangman_drawings
 
 MAX_ATTEMPTS = 6
 
@@ -65,13 +65,14 @@ def game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses):
             print(f"Incorrect! {join_guessed_letters(selected_word, guessed_letters)}")
 
 
-def main():
-    selected_word = select_word()
-    guessed_letters = set()
-    max_wrong_guesses = MAX_ATTEMPTS
-    wrong_guesses = 0
-    hangman_drawings(wrong_guesses)
-    welcome_message(selected_word)
-    game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses)
-
-main()
+#def main():
+#    player_login = Login.LogIn()
+#    selected_word = select_word()
+#    guessed_letters = set()
+#    max_wrong_guesses = MAX_ATTEMPTS
+#    wrong_guesses = 0
+#    hangman_drawings(wrong_guesses)
+#    welcome_message(selected_word)
+#    game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses)
+#
+#main()
