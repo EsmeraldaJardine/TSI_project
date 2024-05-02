@@ -6,7 +6,7 @@ class Main:
     def main():
         log_in = LogIn()
         log_in.log_in()
-        if is_ready_to_play() == True:
+        while is_ready_to_play() == True:
             selected_word = select_word()
             guessed_letters = set()
             max_wrong_guesses = MAX_ATTEMPTS
@@ -14,6 +14,10 @@ class Main:
             hangman_drawings(wrong_guesses)
             welcome_message(selected_word)
             game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses)
+            if is_playing_again():
+                continue
+            else:
+                break  
 
 if __name__ == '__main__':
     Main.main()

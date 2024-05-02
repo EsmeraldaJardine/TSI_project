@@ -58,6 +58,17 @@ def is_gave_over(guessed_letters, selected_word, max_wrong_guesses, wrong_guesse
         return True
     return False
     
+    
+def is_playing_again():
+    response = input("Play Again? (y/n): ").lower()
+    if response == "y":
+        print()
+        print("_________________________")
+        print("********NEW GAME********")
+        return True
+    elif response == "n":
+        return False
+    
 
 def game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses):
     while is_gave_over(guessed_letters, selected_word, max_wrong_guesses, wrong_guesses) == False:
