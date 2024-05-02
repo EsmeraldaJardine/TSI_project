@@ -6,13 +6,14 @@ class Main:
     def main():
         log_in = LogIn()
         log_in.log_in()
-        selected_word = select_word()
-        guessed_letters = set()
-        max_wrong_guesses = MAX_ATTEMPTS
-        wrong_guesses = 0
-        hangman_drawings(wrong_guesses)
-        welcome_message(selected_word)
-        game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses)
+        if is_ready_to_play() == True:
+            selected_word = select_word()
+            guessed_letters = set()
+            max_wrong_guesses = MAX_ATTEMPTS
+            wrong_guesses = 0
+            hangman_drawings(wrong_guesses)
+            welcome_message(selected_word)
+            game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses)
 
 if __name__ == '__main__':
     Main.main()

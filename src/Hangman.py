@@ -1,8 +1,14 @@
 from random import choice
 import string
 from src.HangmanDrawing import hangman_drawings
+import getpass
 
 MAX_ATTEMPTS = 6
+
+def is_ready_to_play():
+    keyboard_input = getpass.getpass(prompt="Press ENTER to play: ")
+    if keyboard_input in string.printable:
+        return True
 
 def welcome_message(selected_word):
     print("Welcome to Hangman!")
@@ -25,9 +31,11 @@ def get_player_input():
         
 
 def validate_input(player_input):
-    if len(player_input) != 1:
+    if len(player_input) > 1: 
+        print('Enter only a SINGLE character') 
         return False
     if player_input not in string.ascii_lowercase:
+        print('Please only enter an alphabetic character') 
         return False
     return True
 
@@ -63,6 +71,8 @@ def game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses):
             wrong_guesses += 1
             hangman_drawings(wrong_guesses)
             print(f"Incorrect! {join_guessed_letters(selected_word, guessed_letters)}")
+            
+
 
 
 #def main():
