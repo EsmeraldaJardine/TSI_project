@@ -8,12 +8,9 @@ class Main:
         log_in.log_in()
         while is_ready_to_play() == True:
             selected_word = select_word()
-            guessed_letters = set()
-            max_wrong_guesses = MAX_ATTEMPTS
-            wrong_guesses = 0
-            hangman_drawings(wrong_guesses)
+            hangman_drawings(WRONG_GUESSES_START)
             welcome_message(selected_word)
-            game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses)
+            game_loop(selected_word, GUESSED_LETTERS, MAX_ATTEMPTS, WRONG_GUESSES_START)
             if is_playing_again():
                 continue
             else:

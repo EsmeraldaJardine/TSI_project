@@ -4,8 +4,11 @@ from src.HangmanDrawing import hangman_drawings
 import getpass
 
 MAX_ATTEMPTS = 6
+GUESSED_LETTERS = set()
+WRONG_GUESSES_START = 0
 
 def is_ready_to_play():
+    # or give way to view high score if else
     keyboard_input = getpass.getpass(prompt="Press ENTER to play: ")
     if keyboard_input in string.printable:
         return True
@@ -49,7 +52,8 @@ def join_guessed_letters(selected_word, guessed_letters):
             result.append('_')
     return ' '.join(result)
 
-def is_gave_over(guessed_letters, selected_word, max_wrong_guesses, wrong_guesses):
+
+def is_game_over(guessed_letters, selected_word, max_wrong_guesses, wrong_guesses):
     if wrong_guesses == max_wrong_guesses:
         print(f"Sorry! You have run out of tries. The word was: {selected_word}")
         return True
@@ -71,7 +75,7 @@ def is_playing_again():
     
 
 def game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses):
-    while is_gave_over(guessed_letters, selected_word, max_wrong_guesses, wrong_guesses) == False:
+    while is_game_over(guessed_letters, selected_word, max_wrong_guesses, wrong_guesses) == False:
         player_input = get_player_input()
         if player_input in selected_word:
             guessed_letters.add(player_input)
@@ -82,6 +86,8 @@ def game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses):
             wrong_guesses += 1
             hangman_drawings(wrong_guesses)
             print(f"Incorrect! {join_guessed_letters(selected_word, guessed_letters)}")
+            
+            
             
 
 
