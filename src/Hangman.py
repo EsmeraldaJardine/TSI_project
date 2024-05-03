@@ -8,13 +8,13 @@ GUESSED_LETTERS = set()
 WRONG_GUESSES_START = 0
 
 def is_ready_to_play(wins, losses):
-    print(f"Your current score is: {wins} wins and {losses} losses")
+    print(f"Your current score this session is: {wins} wins and {losses} losses")
     keyboard_input = getpass.getpass(prompt="Press ENTER to play: ")
     if keyboard_input in string.printable:
         return True
 
 def welcome_message(selected_word):
-    print("Welcome to Hangman!")
+    print("Let's Play Hangman!")
     print("You have 6 tries to guess the word.") 
     print("Good luck!")
     print("_ " * len(selected_word))
