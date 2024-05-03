@@ -35,3 +35,9 @@ class Customer:
     
     def get_total_games_lost(self):
         return self.total_games_lost
+    
+    def set_total_games_won(self, games_won):
+        self.total_games_won += 1
+
+    def set_total_games_lost(self, games_lost):
+        self.total_games_lost += 1
