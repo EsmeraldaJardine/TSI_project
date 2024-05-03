@@ -1,5 +1,8 @@
 from src.CustomerLoad import CustomerLoad
 class LogIn:
+    def __init__(self):
+        self.email_address = None
+
     def get_password(self,email_address):
         customerLoad = CustomerLoad()
         customers = customerLoad.load_customers()
@@ -19,5 +22,6 @@ class LogIn:
         else:
             if input("Enter password: ") == password:
                 print("You are logged in")
+                self.email_address = email_address
             else:
                 print("Wrong password, no second chances")
