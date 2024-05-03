@@ -3,15 +3,12 @@ import string
 from src.HangmanDrawing import hangman_drawings
 import getpass
 
-MAX_ATTEMPTS = 6
+MAX_WRONG_GUESSES = 6
 GUESSED_LETTERS = set()
 WRONG_GUESSES_START = 0
-SESSION_WINS = 0
-SESSION_LOSSES = 0
 
-def is_ready_to_play():
-    # or give way to view high score if else
-    print(f"Your current score is: {SESSION_WINS} wins and {SESSION_LOSSES} losses")
+def is_ready_to_play(wins, losses):
+    print(f"Your current score is: {wins} wins and {losses} losses")
     keyboard_input = getpass.getpass(prompt="Press ENTER to play: ")
     if keyboard_input in string.printable:
         return True
@@ -57,20 +54,18 @@ def join_guessed_letters(selected_word, guessed_letters):
 
 
 def is_game_over(guessed_letters, selected_word, max_wrong_guesses, wrong_guesses):
-    global SESSION_WINS, SESSION_LOSSES
+    wins = 0
     if wrong_guesses == max_wrong_guesses:
         print(f"Sorry! You have run out of tries. The word was: {selected_word}")
-        SESSION_LOSSES += 1
-        return True
+        return True, wins
     if guessed_letters == set(selected_word):
         print(f"Congratulations! You have guessed the word: {selected_word}")
-        SESSION_WINS += 1
-        return True
-    return False
+        wins += 1
+        return True, wins
+    return False, wins
     
     
 def is_playing_again():
-    global SESSION_WINS, SESSION_LOSSES
     response = input("Play Again? (y/n): ").lower()
     if response == "y":
         print()
@@ -79,10 +74,15 @@ def is_playing_again():
         return True
     elif response == "n":
         return False
+    else:
+        print("Invalid input. Please enter 'y' or 'n'")
+        return is_playing_again()
     
 
 def game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses):
-    while is_game_over(guessed_letters, selected_word, max_wrong_guesses, wrong_guesses) == False:
+    victories = 0
+    game_over = False
+    while game_over == False:
         player_input = get_player_input()
         if player_input in selected_word:
             guessed_letters.add(player_input)
@@ -93,6 +93,12 @@ def game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses):
             wrong_guesses += 1
             hangman_drawings(wrong_guesses)
             print(f"Incorrect! {join_guessed_letters(selected_word, guessed_letters)}")
-            
+        
+        game_over, wins = is_game_over(GUESSED_LETTERS, selected_word, max_wrong_guesses, wrong_guesses)
+        if wins == 1:
+            victories += 1
+    return victories
+       
+    
             
             

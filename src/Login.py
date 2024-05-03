@@ -2,7 +2,7 @@ from src.CustomerLoad import CustomerLoad
 class LogIn:
     def __init__(self):
         self.email_address = None
-
+        
     def get_password(self,email_address):
         customerLoad = CustomerLoad()
         customers = customerLoad.load_customers()
