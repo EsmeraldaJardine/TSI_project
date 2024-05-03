@@ -1,6 +1,4 @@
 from src.Login import LogIn
-from src.Hangman import *
-from src.HangmanDrawing import hangman_drawings
 from src.WriteCSVFile import UpdateCsvWinsLosses
 from src.Game import Game
 
@@ -15,21 +13,25 @@ class Main:
             total_losses = int(customer_details['total_losses'])
             print(f"\nWelcome {customer_details['first_name']} {customer_details['last_name']}!")
             print(f"Your total score is: {total_wins} wins and {total_losses} losses")
+
             game = Game()
-            current_game = game.play_game()
-            write_to_csvfile = UpdateCsvWinsLosses()
-            
-            if current_game == "win":
-                total_wins += 1
-                write_to_csvfile.update_customer_game_result(log_in.email_address, "customer.csv", True)
-                print(f"\nYour updated profile score is: {total_wins} wins and {total_losses} losses")
+            is_playing = True
 
-            elif current_game == "loss":
-                total_losses += 1
-                write_to_csvfile.update_customer_game_result(log_in.email_address, "customer.csv", False)
-                print(f"\nYour updated profile score is: {total_wins} wins and {total_losses} losses")
+            while is_playing:
+                is_playing, result = game.play_game()
+                write_to_csv = UpdateCsvWinsLosses()
+                
+                if result == "win":
+                    total_wins += 1
+                    write_to_csv.update_customer_game_result(log_in.email_address, "customer.csv", True)
+    
 
-               
+                elif result == "loss":
+                    total_losses += 1
+                    write_to_csv.update_customer_game_result(log_in.email_address, "customer.csv", False)
+                
+                print(f"\nYour updated profile score is: {total_wins} wins and {total_losses} losses")
+                
             print(f"\nGoodbye {customer_details['first_name']} {customer_details['last_name']}!")
             exit()
 

@@ -7,8 +7,7 @@ MAX_WRONG_GUESSES = 6
 GUESSED_LETTERS = set()
 WRONG_GUESSES_START = 0
 
-def is_ready_to_play(wins, losses):
-    print(f"Your current score this session is: {wins} wins and {losses} losses")
+def is_ready_to_play():
     keyboard_input = getpass.getpass(prompt="\nPress ENTER to play: ")
     if keyboard_input in string.printable:
         return True
