@@ -1,4 +1,5 @@
-import csv, os
+import csv
+from src.Customer import Customer
 
 class UpdateCsvWinsLosses:
         
@@ -14,7 +15,7 @@ class UpdateCsvWinsLosses:
                         row[Customer.games_lost_position] = str(int(row[Customer.games_lost_position]) + 1)
                 updated_file_data.append(row)
 
-        with open("resource/" + file_name, 'wt')as data_file:
+        with open("resource/" + file_name, 'wt', newline='')as data_file:
             file_writer = csv.writer(data_file)
             file_writer.writerows(updated_file_data)
 
