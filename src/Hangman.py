@@ -6,9 +6,12 @@ import getpass
 MAX_ATTEMPTS = 6
 GUESSED_LETTERS = set()
 WRONG_GUESSES_START = 0
+SESSION_WINS = 0
+SESSION_LOSSES = 0
 
 def is_ready_to_play():
     # or give way to view high score if else
+    print(f"Your current score is: {SESSION_WINS} wins and {SESSION_LOSSES} losses")
     keyboard_input = getpass.getpass(prompt="Press ENTER to play: ")
     if keyboard_input in string.printable:
         return True
@@ -54,16 +57,20 @@ def join_guessed_letters(selected_word, guessed_letters):
 
 
 def is_game_over(guessed_letters, selected_word, max_wrong_guesses, wrong_guesses):
+    global SESSION_WINS, SESSION_LOSSES
     if wrong_guesses == max_wrong_guesses:
         print(f"Sorry! You have run out of tries. The word was: {selected_word}")
+        SESSION_LOSSES += 1
         return True
     if guessed_letters == set(selected_word):
         print(f"Congratulations! You have guessed the word: {selected_word}")
+        SESSION_WINS += 1
         return True
     return False
     
     
 def is_playing_again():
+    global SESSION_WINS, SESSION_LOSSES
     response = input("Play Again? (y/n): ").lower()
     if response == "y":
         print()
