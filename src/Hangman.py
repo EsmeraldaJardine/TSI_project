@@ -9,7 +9,7 @@ WRONG_GUESSES_START = 0
 
 def is_ready_to_play(wins, losses):
     print(f"Your current score this session is: {wins} wins and {losses} losses")
-    keyboard_input = getpass.getpass(prompt="Press ENTER to play: ")
+    keyboard_input = getpass.getpass(prompt="\nPress ENTER to play: ")
     if keyboard_input in string.printable:
         return True
 
@@ -97,6 +97,7 @@ def game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses):
         game_over, wins = is_game_over(GUESSED_LETTERS, selected_word, max_wrong_guesses, wrong_guesses)
         if wins == 1:
             victories += 1
+            
     return victories
        
     
