@@ -7,11 +7,16 @@ class LogIn:
         
     
     def get_customers(self):
-        customer_load = CustomerLoad()
-        return customer_load.load_customers()
+        try:
+            customer_load = CustomerLoad()
+            return customer_load.load_customers()
+        except Exception as e:
+            print(f"Error loading customers: {e}")
+            return None
     
 
     def log_in(self):
+        try:
             email_address = input("Enter your email address:")
             customers = self.get_customers()
             for customer in customers:
@@ -26,6 +31,10 @@ class LogIn:
                         return False
                 
             print("Email not found")
+            return False
+        except Exception as e:
+            print(f"Error logging in: {e}")
+            return False
 
     def get_customer_attributes(self):
         if self.customer is None:
