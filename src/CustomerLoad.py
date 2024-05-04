@@ -21,6 +21,13 @@ class CustomerLoad:
         for customer in customers:
             display += customer.get_name() + "\n"
         return display
+    
+    def get_customer(self, email):
+        customers = self.load_customers()
+        for customer in customers:
+            if email == customer.get_email():
+                return customer
+        return None
 
 if __name__ == '__main__':
     customer_load = CustomerLoad()

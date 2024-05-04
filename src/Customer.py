@@ -8,32 +8,32 @@ class Customer:
     games_lost_position = 5
 
     def __init__(self, raw_customer):
-        self.first_name = raw_customer[self.first_name_position]
-        self.last_name = raw_customer[self.last_name_position]
-        self.email = raw_customer[self.email_position]
-        self.password = raw_customer[self.password_position]
-        self.total_games_won = raw_customer[self.games_won_position]
-        self.total_games_lost= raw_customer[self.games_lost_position]
+        self.__first_name = raw_customer[self.first_name_position]
+        self.__last_name = raw_customer[self.last_name_position]
+        self.__email = raw_customer[self.email_position]
+        self.__password = raw_customer[self.password_position]
+        self.__total_games_won = raw_customer[self.games_won_position]
+        self.__total_games_lost= raw_customer[self.games_lost_position]
 
     def get_first_name(self):
-        return self.first_name
+        return self.__first_name
 
     def get_last_name(self):
-        return self.last_name
+        return self.__last_name
 
     def get_name(self):
-        return self.first_name + " " + self.last_name
+        return self.__first_name + " " + self.__last_name
 
     def get_email(self):
-        return self.email
+        return self.__email
 
     def compare_password(self, password):
-        return password == self.password
+        return password == self.__password
     
     def get_total_games_won(self):
-        return self.total_games_won
+        return self.__total_games_won
     
     def get_total_games_lost(self):
-        return self.total_games_lost
+        return self.__total_games_lost
     
 

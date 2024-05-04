@@ -5,31 +5,27 @@ class LogIn:
         self.email_address = None
         self.customer = None
         
-    def get_password(self,email_address):
-        customerLoad = CustomerLoad()
-        customers = customerLoad.load_customers()
-        password = ""
-        counter = 0
-        while password == "" and counter < len(customers):
-            if email_address == customers[counter].get_email():
-                password = customers[counter].password
-                self.customer = customers[counter]
-            counter += 1
-        return password
+    
+    def get_customers(self):
+        customer_load = CustomerLoad()
+        return customer_load.load_customers()
+    
 
     def log_in(self):
             email_address = input("Enter your email address:")
-            password = self.get_password(email_address)
-            if password == "":
-                print("You are not a user")
-                return False
+            customers = self.get_customers()
+            for customer in customers:
+                if email_address == customer.get_email():
+                    if customer.compare_password(input("Enter password: ")):
+                        self.email_address = email_address
+                        self.customer = customer
+                        return True
 
-            if input("Enter password: ") == password:
-                self.email_address = email_address
-                return True
-            else:
-                print("Wrong password, no second chances")
-                return False
+                    else:
+                        print("Wrong password, no second chances")
+                        return False
+                
+            print("Email not found")
 
     def get_customer_attributes(self):
         if self.customer is None:
