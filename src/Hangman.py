@@ -1,6 +1,6 @@
 from random import choice
 import string
-from HangmanDrawing import hangman_drawings
+from src.HangmanDrawing import hangman_drawings
 import getpass
 
 MAX_WRONG_GUESSES = 6
@@ -82,7 +82,7 @@ def game_loop(selected_word, max_wrong_guesses, wrong_guesses):
     global GUESSED_LETTERS
     victories = 0
     game_over = False
-    while game_over == False:
+    while not game_over:
         player_input = get_player_input()
         if player_input in selected_word:
             GUESSED_LETTERS.add(player_input)
