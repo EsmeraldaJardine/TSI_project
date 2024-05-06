@@ -16,7 +16,7 @@ class TestHangman(unittest.TestCase):
                          }
 
 
-    @patch('builtins.input', side_effect=['n','\n'])
+    @patch('getpass.getpass', side_effect=['n',''])
     def test_is_ready_to_play(self, mock_input):
         self.assertFalse(is_ready_to_play())
         self.assertTrue(is_ready_to_play())
