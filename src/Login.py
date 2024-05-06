@@ -1,5 +1,6 @@
-from src.CustomerLoad import CustomerLoad
-from src.Customer import Customer
+from CustomerLoad import CustomerLoad
+from Customer import Customer
+
 class LogIn:
     def __init__(self):
         self.email_address = None

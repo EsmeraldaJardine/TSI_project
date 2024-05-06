@@ -1,6 +1,6 @@
-from src.Login import LogIn
-from src.WriteCSVFile import UpdateCsvWinsLosses
-from src.Game import Game
+from Login import LogIn
+from WriteCSVFile import UpdateCsvWinsLosses
+from Game import Game
 
 class Main:
     def main():

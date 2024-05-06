@@ -1,5 +1,5 @@
-from src.ReadCSVFile import ReadCSVFile
-from src.Customer import Customer
+from ReadCSVFile import ReadCSVFile
+from Customer import Customer
 
 class CustomerLoad:
 

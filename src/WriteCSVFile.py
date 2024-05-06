@@ -1,5 +1,5 @@
 import csv
-from src.Customer import Customer
+from Customer import Customer
 
 class UpdateCsvWinsLosses:
         

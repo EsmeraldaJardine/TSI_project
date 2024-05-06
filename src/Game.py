@@ -1,4 +1,4 @@
-from src.Hangman import *
+from Hangman import *
 
 class Game:
     def play_game(self):
@@ -8,7 +8,7 @@ class Game:
         hangman_drawings(WRONG_GUESSES_START)
         welcome_message(selected_word)
         
-        victories = game_loop(selected_word, GUESSED_LETTERS, MAX_WRONG_GUESSES, WRONG_GUESSES_START)
+        victories = game_loop(selected_word, MAX_WRONG_GUESSES, WRONG_GUESSES_START)
         
         if victories == 1:
             game_result = "win"  

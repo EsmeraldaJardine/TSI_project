@@ -4,7 +4,7 @@ class ReadCSVFile:
     def fix_working_directory(self):
         current_working_directory = os.getcwd()
         while "test" in current_working_directory or "src" in current_working_directory:
-            os.chdir("../")
+            os.chdir("/")
             current_working_directory = os.getcwd()
 
     def get_file_data(self,file_name):

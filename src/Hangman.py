@@ -1,6 +1,6 @@
 from random import choice
 import string
-from src.HangmanDrawing import hangman_drawings
+from HangmanDrawing import hangman_drawings
 import getpass
 
 MAX_WRONG_GUESSES = 6
@@ -78,27 +78,28 @@ def is_playing_again():
         return is_playing_again()
     
 
-def game_loop(selected_word, guessed_letters, max_wrong_guesses, wrong_guesses):
+def game_loop(selected_word, max_wrong_guesses, wrong_guesses):
+    global GUESSED_LETTERS
     victories = 0
     game_over = False
     while game_over == False:
         player_input = get_player_input()
         if player_input in selected_word:
-            guessed_letters.add(player_input)
+            GUESSED_LETTERS.add(player_input)
             hangman_drawings(wrong_guesses)
-            print(f"Correct! {join_guessed_letters(selected_word, guessed_letters)}")
+            print(f"Correct! {join_guessed_letters(selected_word, GUESSED_LETTERS)}")
             
         else:
             wrong_guesses += 1
             hangman_drawings(wrong_guesses)
-            print(f"Incorrect! {join_guessed_letters(selected_word, guessed_letters)}")
+            print(f"Incorrect! {join_guessed_letters(selected_word, GUESSED_LETTERS)}")
         
         game_over, wins = is_game_over(GUESSED_LETTERS, selected_word, max_wrong_guesses, wrong_guesses)
         if wins == 1:
             victories += 1
             
     return victories
-       
     
+
             
             
