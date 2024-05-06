@@ -1,9 +1,9 @@
-from Login import LogIn
-from WriteCSVFile import UpdateCsvWinsLosses
-from Game import Game
+from src.Login import LogIn
+from src.WriteCSVFile import UpdateCsvWinsLosses
+from src.Game import Game
 
-class Main:
-    def main():
+class PlayGame:
+    def play_game(self):
         log_in = LogIn()
         is_logged_in = log_in.log_in()
         customer_details = log_in.get_customer_attributes()
@@ -37,7 +37,11 @@ class Main:
 
         print("Goodbye!")
 
+def main():
+    active_game = PlayGame()
+    active_game.play_game()
+
 if __name__ == '__main__':
-    Main.main()
+    main()
 
 
